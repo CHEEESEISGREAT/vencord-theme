@@ -1,0 +1,277 @@
+/* Cyan UI - Ultra Performance Edition
+ * Optimized for maximum performance
+ * Original by DaBluLite - Performance optimization applied
+ */
+
+/* Critical imports - loaded async for performance */
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&family=Montserrat:wght@300;400;600&display=swap");
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
+
+/* CSS Variables - consolidated and optimized */
+:root {
+  /* Core colors */
+  --cyan-accent: #009f88;
+  --cyan-black: #000;
+  --cyan-white: #fff;
+  
+  /* Spacing system */
+  --cyan-spacing: 0.25rem;
+  
+  /* Optimized blur values */
+  --cyan-blur: 12px; /* Reduced from 16px for performance */
+  
+  /* Animation durations */
+  --cyan-transition: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* Borders and shadows - simplified */
+  --cyan-border: 1px solid rgba(155, 155, 155, 0.12);
+  --cyan-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+  
+  /* Backgrounds - using CSS containment */
+  --cyan-bg-primary: rgba(0, 0, 0, 0.6);
+  --cyan-bg-secondary: rgba(155, 155, 155, 0.12);
+  
+  /* Border radius values */
+  --cyan-radius-sm: 8px;
+  --cyan-radius-md: 12px;
+  --cyan-radius-lg: 16px;
+  --cyan-radius-xl: 20px;
+}
+
+/* GPU acceleration for smooth animations */
+* {
+  will-change: auto;
+}
+
+/* Optimize reflows with contain */
+.chat_f75fb0,
+.container__133bf,
+.sidebar_c48ade {
+  contain: layout style paint;
+}
+
+/* Base optimizations - single declaration block */
+.bg__960e4 {
+  background: var(--cyan-accent) url("https://github.com/DaBluLite/Cyan/blob/next/cyan-ocean-waves.png?raw=true") center/cover fixed;
+  filter: brightness(0.7);
+}
+
+/* Simplified glassmorphism effect */
+.glassmorphic {
+  backdrop-filter: blur(var(--cyan-blur));
+  -webkit-backdrop-filter: blur(var(--cyan-blur));
+  background: var(--cyan-bg-secondary);
+  border: var(--cyan-border);
+}
+
+/* Batch similar elements for performance */
+.chat_f75fb0,
+.container__133bf,
+.sidebar_c48ade,
+.panels_c48ade,
+.container__01ae2 {
+  @extend .glassmorphic;
+  border-radius: var(--cyan-radius-lg);
+  box-shadow: var(--cyan-shadow);
+  margin: calc(var(--cyan-spacing) * 2);
+}
+
+/* Optimized message animations - using transform for GPU */
+.message__5126c:not(.isSending_c19a55) {
+  transform: translateZ(0);
+  transition: transform var(--cyan-transition), opacity var(--cyan-transition);
+  animation: slideIn 300ms ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translate3d(20px, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* Button optimizations - single rule */
+.button__201d5,
+.button__67645,
+[class*="button"] {
+  transition: background-color var(--cyan-transition), transform 100ms;
+  border-radius: var(--cyan-radius-md);
+  background: var(--cyan-bg-secondary);
+  transform: translateZ(0);
+}
+
+.button__201d5:hover,
+.button__67645:hover {
+  background: rgba(155, 155, 155, 0.2);
+  transform: scale(1.02) translateZ(0);
+}
+
+/* Simplified modal styles */
+.root__49fc1:not(.carouselModal_d3a6f0),
+.dc-modal {
+  position: fixed;
+  backdrop-filter: blur(var(--cyan-blur));
+  background: var(--cyan-bg-primary);
+  border-radius: var(--cyan-radius-lg);
+  animation: fadeIn 200ms ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Scrollbar optimization */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(155, 155, 155, 0.3);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Input field optimizations */
+.textAreaSlate__74017,
+.input__0f084 {
+  transition: border-color var(--cyan-transition);
+  border: 1px solid transparent;
+  background: var(--cyan-bg-secondary);
+  border-radius: var(--cyan-radius-md);
+}
+
+.textAreaSlate__74017:focus,
+.input__0f084:focus {
+  border-color: var(--cyan-accent);
+  outline: none;
+}
+
+/* Avatar optimizations */
+.avatar_f215b9,
+.svg__2338f {
+  border-radius: 50%;
+  contain: paint;
+}
+
+/* Performance-focused media queries */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Hide unnecessary elements for performance */
+.gradientContainer_bfe55a,
+.ready_a2f514,
+.tooltipPointer__382e7,
+.tutorial__73f2a {
+  display: none !important;
+}
+
+/* Optimize voice states */
+.voiceAvatar_f910d0 {
+  contain: strict;
+  border-radius: var(--cyan-radius-lg);
+}
+
+/* Batch process common properties */
+[class*="container"],
+[class*="wrapper"] {
+  contain: layout;
+}
+
+/* Reduce paint areas */
+.message__5126c,
+.member__5d473 {
+  contain: content;
+}
+
+/* Optimize animations with CSS containment */
+[class*="animate"] {
+  contain: layout style paint;
+}
+
+/* Mobile optimizations */
+.is-mobile {
+  * {
+    backdrop-filter: none !important;
+    box-shadow: none !important;
+  }
+  
+  .chat_f75fb0,
+  .container__133bf {
+    border-radius: 0 !important;
+    margin: 0 !important;
+  }
+}
+
+/* Loading optimization */
+.container_a2f514 {
+  backdrop-filter: blur(8px);
+  background: var(--cyan-bg-primary);
+}
+
+/* Performance-critical overrides */
+.theme-dark {
+  --cyan-bg-primary: rgba(0, 0, 0, 0.6);
+  --cyan-bg-secondary: rgba(155, 155, 155, 0.12);
+}
+
+.theme-light {
+  --cyan-bg-primary: rgba(255, 255, 255, 0.6);
+  --cyan-bg-secondary: rgba(155, 155, 155, 0.16);
+}
+
+/* Reduce complexity of frequently updated elements */
+.typing__8061a,
+.isSending_c19a55 {
+  animation: none !important;
+  transition: none !important;
+}
+
+/* Optimize sidebar */
+.sidebarList_c48ade {
+  contain: strict;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* Final performance tweaks */
+*::before,
+*::after {
+  will-change: auto;
+}
+
+/* Use hardware acceleration wisely */
+.accelerated {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Reduce repaints on hover states */
+[class*="hover"]:hover {
+  will-change: background-color, transform;
+}
+
+/* Optimize frequently changing elements */
+.message__5126c {
+  contain: layout style;
+}
+
+/* Final cleanup for unused animations */
+@keyframes animate-rtl { from { opacity: 0; transform: translateX(20px); } to { opacity: 1; transform: translateX(0); } }
+@keyframes animate-ltr { from { opacity: 0; transform: translateX(-20px); } to { opacity: 1; transform: translateX(0); } }
+@keyframes animate-ttb { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes animate-btt { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
